@@ -17,7 +17,7 @@ public class AmbienteController : ControllerBase
     [HttpGet("dados")]
     public async Task<IActionResult> Dados()
     {
-        return Ok(await _ambienteRepository.Ultimas24Hrs());
+        return Ok(await _ambienteRepository.Ultimas24HrsAsync());
     }
     
     [HttpGet("ultimo-registro")]
