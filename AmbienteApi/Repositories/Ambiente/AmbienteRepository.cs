@@ -17,7 +17,12 @@ public class AmbienteRepository : IAmbienteRepository
         _mapper = mapper;
     }
 
-    public async Task<List<AmbienteDto>> Ultimas24Hrs()
+    public async Task<AmbienteDto> GetRegistroAsync(int id)
+    {
+        var registro = await _dbContext.Registro.FindAsync(id);
+        return _mapper.Map<AmbienteDto>(registro);
+    }
+    public async Task<List<AmbienteDto>> Ultimas24HrsAsync()
     {
         var dataLimite = DateTime.Now.AddHours(-24);
 

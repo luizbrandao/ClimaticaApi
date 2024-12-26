@@ -13,11 +13,17 @@ public class AmbienteController : ControllerBase
     {
         _ambienteRepository = ambienteRepository;
     }
+    
+    [HttpGet("GetRegistro")]
+    public async Task<IActionResult> GetRegistro(int id)
+    {
+        return Ok(await _ambienteRepository.GetRegistroAsync(id));
+    }
 
     [HttpGet("dados")]
     public async Task<IActionResult> Dados()
     {
-        return Ok(await _ambienteRepository.Ultimas24Hrs());
+        return Ok(await _ambienteRepository.Ultimas24HrsAsync());
     }
     
     [HttpGet("ultimo-registro")]
