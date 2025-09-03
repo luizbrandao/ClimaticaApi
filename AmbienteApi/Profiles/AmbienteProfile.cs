@@ -9,5 +9,6 @@ public class AmbienteProfile : Profile
     public AmbienteProfile()
     {
         CreateMap<Registro, AmbienteDto>();
+        CreateMap<AmbienteDto, Registro>();
     }
 }

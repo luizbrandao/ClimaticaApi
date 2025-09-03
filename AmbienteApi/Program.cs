@@ -1,5 +1,7 @@
 using AmbienteApi.migrations.Context;
+using AmbienteApi.Profiles;
 using AmbienteApi.Repositories.Ambiente;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +15,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAmbienteRepository, AmbienteRepository>();
-
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<AmbienteProfile>();
+});
+IMapper mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
 var app = builder.Build();
 
 app.UseSwagger();
