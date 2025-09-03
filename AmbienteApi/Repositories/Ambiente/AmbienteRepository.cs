@@ -44,6 +44,7 @@ public class AmbienteRepository : IAmbienteRepository
     {
         var entity = _mapper.Map<Registro>(ambienteDto);
         await _dbContext.Registro.AddAsync(entity);
+        await _dbContext.SaveChangesAsync();
         return true;
     }
 }
